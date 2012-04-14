@@ -19,36 +19,13 @@
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
   </head>
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-          <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Punter</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
+    <%= render 'layouts/nav_bar' %>
     <div class="container">
       <div class="content">
         <div class="row">
            <div class="span9">
               <% flash.each do |key, msg| %>
-                <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
-                <%= content_tag :script, :type => "text/javascript" do -%>
-                    setTimeout("new Effect.Fade('notice_<%= key %>');", 15000);
-                <% end %>
+                <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
               <% end %>
               <%= yield %>
             </div>
