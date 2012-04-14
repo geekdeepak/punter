@@ -33,7 +33,7 @@
             <ul class="nav">
               <li><%= link_to "Link1", "/path1"  %></li>
               <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,6 +44,12 @@
       <div class="content">
         <div class="row">
            <div class="span9">
+              <% flash.each do |key, msg| %>
+                <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_ #{key}" %>
+                <%= content_tag :script, :type => "text/javascript" do -%>
+                    setTimeout("new Effect.Fade('notice_<%= key %>');", 15000);
+                <% end %>
+              <% end %>
               <%= yield %>
             </div>
             <div class="span3">
